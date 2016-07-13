@@ -1,4 +1,10 @@
 launchConfigurations/
 
+
 # IntelliJ
+
 .idea
+
+=======
+
+node_modules/
