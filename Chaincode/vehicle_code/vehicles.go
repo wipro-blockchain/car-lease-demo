@@ -142,7 +142,7 @@ func (t *SimpleChaincode) add_ecert(stub shim.ChaincodeStubInterface, name strin
 //				  Returns the username as a string.
 //==============================================================================================================================
 
-func (t *SimpleChaincode) get_username(stub shim.ChaincodeStubInterface.ChaincodeStub) (string, error) {
+func (t *SimpleChaincode) get_username(stub shim.ChaincodeStubInterface) (string, error) {
 
 	bytes, err := stub.GetCallerCertificate();
 															if err != nil { return "", errors.New("Couldn't retrieve caller certificate") }
@@ -157,7 +157,7 @@ func (t *SimpleChaincode) get_username(stub shim.ChaincodeStubInterface.Chaincod
 // 				  		certificates common name. The affiliation is stored as part of the common name.
 //==============================================================================================================================
 
-func (t *SimpleChaincode) check_affiliation(stub shim.ChaincodeStubInterface.ChaincodeStub, cert string) (int, error) {																																																					
+func (t *SimpleChaincode) check_affiliation(stub shim.ChaincodeStubInterface, cert string) (int, error) {																																																					
 	
 
 	decodedCert, err := url.QueryUnescape(cert);    				// make % etc normal //
@@ -675,7 +675,7 @@ func (t *SimpleChaincode) update_make(stub shim.ChaincodeStubInterface, v Vehicl
 //=================================================================================================================================
 //	 update_model
 //=================================================================================================================================
-func (t *SimpleChaincode) update_model(stub *shim.ChaincodeStub, v Vehicle, caller string, caller_affiliation int, new_value string) ([]byte, error) {
+func (t *SimpleChaincode) update_model(stub shim.ChaincodeStubInterface, v Vehicle, caller string, caller_affiliation int, new_value string) ([]byte, error) {
 	
 	if 		v.Status			== STATE_MANUFACTURE	&&
 			v.Owner				== caller				&& 
